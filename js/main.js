@@ -2,6 +2,25 @@ const button = document.getElementById('button')
 let output = document.getElementById('ai-res');
 output.hidden = true;
 
+const textarea = document.getElementById("dream");
+textarea.style.direction = "rtl";
+
+textarea.addEventListener("input", function () {
+    const firstChar = this.value.trim().charAt(0);
+    
+    if (firstChar === '') return;
+    
+    if (/[\u0600-\u06FF]/.test(firstChar)) {
+      this.style.direction = "rtl";
+      this.style.textAlign = "right";
+			textarea.placeholder = "أكتب حلمك هنا بالتفصيل";
+    } else {
+      this.style.direction = "ltr";
+      this.style.textAlign = "left";
+			textarea.placeholder = "Write your dream here in detail";
+    }
+  });
+
 button.addEventListener('click', async () => {
   let dream = document.getElementById('dream').value;
   let area = document.getElementById('dream');
